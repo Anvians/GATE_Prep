@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prep Ledger — GATE ME 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="grain"></div>
+
+  <header class="board">
+    <div class="board-top">
+      <div class="board-mark">
+        <span class="board-mark-dot"></span>
+        PREP LEDGER
+      </div>
+      <div class="board-target">
+        Target <strong>60+</strong> / 100
+      </div>
+    </div>
+
+    <div class="board-main">
+      <div class="board-label">DEPARTS FOR GATE ME 2027 IN</div>
+      <div class="flip-row" id="countdown">
+        <div class="flip-unit">
+          <div class="flip-digits" id="cd-days">00</div>
+          <div class="flip-caption">days</div>
+        </div>
+        <div class="flip-sep">:</div>
+        <div class="flip-unit">
+          <div class="flip-digits" id="cd-hours">00</div>
+          <div class="flip-caption">hrs</div>
+        </div>
+        <div class="flip-sep">:</div>
+        <div class="flip-unit">
+          <div class="flip-digits" id="cd-mins">00</div>
+          <div class="flip-caption">min</div>
+        </div>
+      </div>
+      <div class="board-date">06 FEB 2027 · SATURDAY · FIRST EXAM DAY</div>
+    </div>
+
+    <div class="board-progress">
+      <div class="progress-row">
+        <span class="progress-name">GA</span>
+        <div class="progress-track"><div class="progress-fill" id="bar-GA" data-section="GA"></div></div>
+        <span class="progress-pct" id="pct-GA">0%</span>
+      </div>
+      <div class="progress-row">
+        <span class="progress-name">MATH</span>
+        <div class="progress-track"><div class="progress-fill" id="bar-MATH" data-section="MATH"></div></div>
+        <span class="progress-pct" id="pct-MATH">0%</span>
+      </div>
+      <div class="progress-row">
+        <span class="progress-name">AMD</span>
+        <div class="progress-track"><div class="progress-fill" id="bar-AMD" data-section="AMD"></div></div>
+        <span class="progress-pct" id="pct-AMD">0%</span>
+      </div>
+      <div class="progress-row">
+        <span class="progress-name">FTS</span>
+        <div class="progress-track"><div class="progress-fill" id="bar-FTS" data-section="FTS"></div></div>
+        <span class="progress-pct" id="pct-FTS">0%</span>
+      </div>
+      <div class="progress-row">
+        <span class="progress-name">MMI</span>
+        <div class="progress-track"><div class="progress-fill" id="bar-MMI" data-section="MMI"></div></div>
+        <span class="progress-pct" id="pct-MMI">0%</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="sheet">
+
+    <section class="ledgers" id="ledgers">
+      <!-- GA, Maths, AMD, FTS, MMI ledger cards injected here -->
+    </section>
+
+    <section class="mock-section">
+      <div class="section-head">
+        <h2>Mock log</h2>
+        <button class="btn-ghost" id="toggle-mock-form">+ Log a mock</button>
+      </div>
+
+      <form id="mock-form" class="mock-form hidden">
+        <div class="mock-form-grid">
+          <label>Date
+            <input type="date" id="mock-date" required />
+          </label>
+          <label>Source
+            <input type="text" id="mock-source" placeholder="e.g. Official GATE mock 1" />
+          </label>
+          <label>GA score
+            <input type="number" id="mock-ga" step="0.01" />
+          </label>
+          <label>Maths score
+            <input type="number" id="mock-math" step="0.01" />
+          </label>
+          <label>AMD score
+            <input type="number" id="mock-amd" step="0.01" />
+          </label>
+          <label>FTS score
+            <input type="number" id="mock-fts" step="0.01" />
+          </label>
+          <label>MMI score
+            <input type="number" id="mock-mmi" step="0.01" />
+          </label>
+          <label>Total (/100)
+            <input type="number" id="mock-overall" step="0.01" />
+          </label>
+          <label>Percentile
+            <input type="number" id="mock-percentile" step="0.01" />
+          </label>
+        </div>
+        <label class="mock-notes-label">Notes
+          <textarea id="mock-notes" placeholder="What went wrong, what to fix..."></textarea>
+        </label>
+        <div class="mock-form-actions">
+          <button type="submit" class="btn-primary">Save entry</button>
+          <button type="button" class="btn-ghost" id="cancel-mock-form">Cancel</button>
+        </div>
+      </form>
+
+      <div class="chart-wrap">
+        <canvas id="score-chart" height="140"></canvas>
+        <div class="chart-empty" id="chart-empty">No mocks logged yet — your score trend will plot here.</div>
+      </div>
+
+      <div class="mock-table-wrap">
+        <table class="mock-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Source</th>
+              <th>GA</th>
+              <th>Maths</th>
+              <th>AMD</th>
+              <th>FTS</th>
+              <th>MMI</th>
+              <th>Total</th>
+              <th>%ile</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="mock-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
